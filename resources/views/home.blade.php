@@ -18,16 +18,21 @@
 
 <body>
 
+    <div class="controls">
+        <a href="{{ route('cars.create') }}">Create</a>
+    </div>
+
     <div>
         <ul>
-                @foreach ($cars as $car)
-                            <li>
-                                {{$car->brand}} -{{$car->price}}
-                            </li>
-                @endforeach ( $cars as $car )
-                
+            @foreach ($cars as $car)
+                <li>
+                    {{ $car->brand }} -{{ $car->price }}
+                    <a href="{{ route('cars.edit', $car->id) }}">EDIT</a>
+                </li>
+            @endforeach ( $cars as $car )
+
         </ul>
-           
+
     </div>
 
 </body>
