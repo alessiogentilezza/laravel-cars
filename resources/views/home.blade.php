@@ -19,11 +19,15 @@
 <body>
 
     <div>
-            @forelse ( $cars as $car )
-                {{$car->brand}} - {{$car->price}}
-            @empty
-                <p>tutto venduto</p>
-            @endforelse
+        <ul>
+                @foreach ($cars as $car)
+                            <li>
+                                {{$car->brand}} -{{$car->price}}
+                            </li>
+                @endforeach ( $cars as $car )
+                
+        </ul>
+           
     </div>
 
 </body>
