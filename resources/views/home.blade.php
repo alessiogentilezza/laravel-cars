@@ -21,24 +21,30 @@
     <div class="controls">
         <a href="{{ route('cars.create') }}">Create</a>
     </div>
-
-    <div>
-        <ul>
+    <div class="container">
+        <div class="row">
             @foreach ($cars as $car)
-                <li class="mb-3">
-                    {{ $car->brand }} -{{ $car->price }}
-
-                    <form action="{{ route('cars.destroy', ['car' => $car->id]) }}" method="POST">
-                        @csrf
-
-                        @method('DELETE')
-                        <a href="{{ route('cars.edit', $car->id) }}">EDIT</a>
-                        <button class="btn" type="submit"><a href="">ELIMINA</a></button>
-                    </form>
-                </li>
-            @endforeach ( $cars as $car )
-
-        </ul>
+                <div class="col-3 mb-3">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $car->model }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ $car->brand }}</h6>
+                            <p class="card-text">{{ $car->price }}</p>
+                            <p class="card-text">{{ $car->cc }}</p>
+                            <p class="card-text">{{ $car->year_release }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <form action="{{ route('cars.destroy', ['car' => $car->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <a href="{{ route('cars.edit', $car->id) }}">EDIT</a>
+                                <button class="btn" type="submit"><a href="">ELIMINA</a></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
 
     </div>
 
