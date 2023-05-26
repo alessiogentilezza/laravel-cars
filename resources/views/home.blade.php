@@ -25,9 +25,16 @@
     <div>
         <ul>
             @foreach ($cars as $car)
-                <li>
+                <li class="mb-3">
                     {{ $car->brand }} -{{ $car->price }}
-                    <a href="{{ route('cars.edit', $car->id) }}">EDIT</a>
+
+                    <form action="{{ route('cars.destroy', ['car' => $car->id]) }}" method="POST">
+                        @csrf
+
+                        @method('DELETE')
+                        <a href="{{ route('cars.edit', $car->id) }}">EDIT</a>
+                        <button class="btn" type="submit"><a href="">ELIMINA</a></button>
+                    </form>
                 </li>
             @endforeach ( $cars as $car )
 
