@@ -15,12 +15,13 @@
     @vite('resources/js/app.js')
 
 </head>
+<nav class="navbar navbar-light bg-light mb-5">
+    <div class="container-fluid">
+        <a class="navbar-brand btn btn-primary text-white" href="{{ route('cars.create') }}">Create</a>
+    </div>
+</nav>
 
 <body>
-
-    <div class="controls">
-        <a href="{{ route('cars.create') }}">Create</a>
-    </div>
     <div class="container">
         <div class="row">
             @foreach ($cars as $car)
@@ -37,8 +38,13 @@
                             <form action="{{ route('cars.destroy', ['car' => $car->id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{ route('cars.edit', $car->id) }}">EDIT</a>
-                                <button class="btn" type="submit"><a href="">ELIMINA</a></button>
+
+                                <button class=" btn btn-warning ml-2" type="submit"><a
+                                        class="text-white text-decoration-none"
+                                        href="{{ route('cars.edit', $car->id) }}">edit</a>
+                                </button>
+                                <button class=" btn btn-danger text-white ml-2" type="submit">elimina
+                                </button>
                             </form>
                         </div>
                     </div>
