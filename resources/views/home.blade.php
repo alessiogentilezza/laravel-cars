@@ -45,6 +45,7 @@
                                 </button>
                                 <button class=" btn btn-danger text-white ml-2" type="submit">elimina
                                 </button>
+                                <button class="btn"><a href="{{route('cars.show',$car->id)}}">Visualizza</a></button>
                             </form>
                         </div>
                     </div>
