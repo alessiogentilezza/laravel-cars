@@ -33,6 +33,10 @@
                             <p class="card-text">{{ $car->price }}</p>
                             <p class="card-text">{{ $car->cc }}</p>
                             <p class="card-text">{{ $car->year_release }}</p>
+
+                            @foreach ($car->optionals as $optional)
+                                <span class="badge rounded-pill text-bg-primary">{{ $optional->name }}</span>
+                            @endforeach
                         </div>
                         <div class="card-footer">
                             <form action="{{ route('cars.destroy', ['car' => $car->id]) }}" method="POST">
@@ -45,7 +49,8 @@
                                 </button>
                                 <button class=" btn btn-danger text-white ml-2" type="submit">elimina
                                 </button>
-                                <a href="{{route('cars.show',$car->id)}}" class="text-white btn btn-primary">Visualizza</a>
+                                <a href="{{ route('cars.show', $car->id) }}"
+                                    class="text-white btn btn-primary">Visualizza</a>
                             </form>
                         </div>
                     </div>

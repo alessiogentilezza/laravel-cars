@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Optional;
 
 class CarController extends Controller
 {
@@ -17,7 +18,8 @@ class CarController extends Controller
 
     public function create()
     {
-        return view('create');
+        $optionals = Optional::all();
+        return view('create', compact('optionals'));
     }
 
 
@@ -31,8 +33,14 @@ class CarController extends Controller
         $newCar->model = $data['model'];
         $newCar->cc = $data['cc'];
         $newCar->year_release = $data['year'];
+
         $newCar->fill($data);
         $newCar->save();
+
+        
+        if($request->has('optionals')){
+            $newCar->optionals()->attach($request->optionals);
+        }
 
         return redirect()->route('cars.index');
     }
@@ -48,8 +56,8 @@ class CarController extends Controller
     public function edit($id)
     {
         $car = Car::findOrFail($id);
-
-        return view('edit', compact('car'));
+        $optionals = Optional::all();
+        return view('edit', compact('car','optionals'));
     }
 
 
@@ -58,6 +66,10 @@ class CarController extends Controller
         $newCar = Car::findOrFail($id);
         $data = $request->all();
         $newCar->update($data);
+
+        $newCar->optionals()->sync($request->optionals);
+
+
 
         return redirect()->route('cars.index');
     }

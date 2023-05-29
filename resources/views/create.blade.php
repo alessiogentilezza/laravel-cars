@@ -61,7 +61,13 @@
                         @enderror
                     </div>
 
-
+                    <div class="controls mb-3">
+                        @foreach ($optionals as $optional)
+                            <input type="checkbox" id="optional_{{ $optional->id }}" name="optionals[]"
+                                value="{{ $optional->id }}">
+                            <label for="optional_{{ $optional->id }}">{{ $optional->name }}</label><br>
+                        @endforeach
+                    </div>
 
 
                     <button type="submit" class="btn btn-primary">Salva</button>
